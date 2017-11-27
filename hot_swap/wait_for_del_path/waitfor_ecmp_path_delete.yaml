@@ -1,0 +1,21 @@
+---
+- hosts: datacenter
+  gather_facts: no
+  connection: local
+  vars:
+    build_dir: "/root/debug"
+  tasks:
+    - name: Assembling configfurations
+      assemble: src={{ build_dir }} dest={{ build_dir }}/{{hostname}}.conf regexp='\\S_{{hostname}}\\S'
+    - name: "Wait for spine2 routes delete in {{ hostname }}"
+      dellos10_command:
+        commands:
+           - command: "show ip route bgp | grep {{ remote_neighbor_ip }}"
+        provider: "{{ cli }}"
+      retries: 10
+      delay: 5
+      register: result
+      until: result.stdout[0] == ""
+    - debug:
+        msg: "{{ hostname }} has deleted the ECMP to spine2 switch"
+      when: result.stdout[0] == ""

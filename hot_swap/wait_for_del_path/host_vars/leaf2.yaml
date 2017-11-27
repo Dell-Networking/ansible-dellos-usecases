@@ -1,0 +1,8 @@
+hostname: leaf2
+cli:
+  host: "{{ ansible_host }}"
+  username: "{{ dellos10_cli_user | default('admin') }}"
+  password: "{{ dellos10_cli_pass | default('admin') }}"
+  timeout: 300
+
+remote_neighbor_ip: "100.2.17.1"

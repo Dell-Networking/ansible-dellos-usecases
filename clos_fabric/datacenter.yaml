@@ -1,0 +1,10 @@
+---
+- hosts: datacenter
+  gather_facts: no
+  connection: local
+  vars:
+    build_dir: "/tmp"
+  roles:
+        - Dell-Networking.dellos-interface
+        - Dell-Networking.dellos-bgp
+        - Dell-Networking.dellos-snmp

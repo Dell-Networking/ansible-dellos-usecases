@@ -1,0 +1,7 @@
+spine1 ansible_host=2.2.2.1 ansible_net_os_name="dellos10"
+
+[spine]
+spine1
+
+[datacenter:children]
+spine

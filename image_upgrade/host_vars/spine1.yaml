@@ -1,0 +1,11 @@
+hostname: spine1
+cli:
+  host: "{{ ansible_host }}"
+  username: "{{ dellos10_cli_user | default('admin') }}"
+  password: "{{ dellos10_cli_pass | default('admin') }}"
+  timeout: 30
+
+dellos_image_upgrade:
+  operation_type: install
+  software_image_url: tftp://1.1.1.1/PKGS_OS10-Enterprise-10.2.9999E.5790-installer-x86_64.bin
+  software_version: 10.2.9999E

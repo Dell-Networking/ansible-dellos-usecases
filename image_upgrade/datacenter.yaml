@@ -1,0 +1,6 @@
+---
+- hosts: datacenter
+  gather_facts: no
+  connection: local
+  roles:
+        - Dell-Networking.dellos-image-upgrade

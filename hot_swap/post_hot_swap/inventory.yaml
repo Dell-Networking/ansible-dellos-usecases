@@ -1,0 +1,9 @@
+spine2 ansible_host=10.16.204.57 ansible_net_os_name="dellos10"
+
+[spine]
+spine2
+
+[leaf]
+
+[datacenter:children]
+spine

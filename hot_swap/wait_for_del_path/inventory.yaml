@@ -1,0 +1,15 @@
+leaf1 ansible_host=10.16.204.27 ansible_net_os_name="dellos10"
+leaf2 ansible_host=10.16.204.28 ansible_net_os_name="dellos10"
+leaf3 ansible_host=10.16.204.29 ansible_net_os_name="dellos10"
+leaf4 ansible_host=10.16.204.30 ansible_net_os_name="dellos10"
+
+[spine]
+
+[leaf]
+leaf1
+leaf2
+leaf3
+leaf4
+
+[datacenter:children]
+leaf

@@ -1,0 +1,17 @@
+---
+- hosts: datacenter
+  connection: local
+  vars:
+    build_dir: "/root/debug"
+  tasks:
+    - name: Assembling configfurations
+      assemble: src={{ build_dir }} dest={{ build_dir }}/{{hostname}}.conf regexp='\\S_{{hostname}}\\S'
+    - name: "copy running config from remote location"
+      dellos10_command:
+        commands:
+           - command: 'copy {{item.copy_type}}://{{item.username}}:{{item.password}}@{{item.host_ip}}:{{item.file_path}} running-configuration'
+             #If the switch asks for credentials for copy command, use the below commented statements to give the prompt and password
+             #prompt: 'admin:'
+             #answer: 'admin'
+        provider: "{{ cli }}"
+      with_items: '{{copy_remote_running}}'

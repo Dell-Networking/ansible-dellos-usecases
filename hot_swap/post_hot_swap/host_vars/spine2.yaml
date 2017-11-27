@@ -1,0 +1,16 @@
+---
+hostname: spine2
+
+cli:
+  host: "{{ ansible_host }}"
+  username: "{{ dellos10_cli_user | default('admin') }}"
+  password: "{{ dellos10_cli_pass | default('admin') }}"
+  timeout: 300
+
+# This section is for copying running config to remote location
+copy_remote_running:
+    - copy_type: scp
+      username: linuxadmin
+      password: linuxadmin
+      host_ip: 10.16.204.62
+      file_path: /home/linuxadmin/running_config
